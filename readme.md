@@ -1,70 +1,34 @@
-# Theory of Mind Scenario Generator
+# Enhancing Theory of Mind in Large Language Models: A Python Solution
 
-This repository contains a script that generates unique scenarios, questions, and answers based on user input. It uses OpenAI's GPT-3 model to generate text and the dotenv library to manage environment variables.
+This repository presents a Python script that enhances Theory of Mind (ToM) performance in Large Language Models (LLMs) by leveraging in-context learning techniques described in the paper: [Boosting Theory-of-Mind Performance in Large Language Models via Prompting](https://arxiv.org/pdf/2304.11490.pdf) by Shima Rahimi Moghaddam and Christopher J. Honey. ToM is a crucial aspect of human-like reasoning that allows understanding of agents' beliefs, goals, and mental states. Improving LLMs' ToM performance is essential for common-sense reasoning and enabling effective interactions with humans.
 
-The primary goal of this project is to improve question-answering performance in large language models (LLMs) by boosting their Theory-of-Mind (ToM) reasoning abilities. ToM refers to the understanding of agents' beliefs, goals, and mental states, which are essential for common-sense reasoning involving humans.
+## Features
 
-The script is inspired by the work titled "Boosting Theory-of-Mind Performance in Large Language Models via Prompting" by Shima Rahimi Moghaddam and Christopher J. Honey. This research measures the ToM performance of GPT-4 and three GPT-3.5 variants and investigates the effectiveness of in-context learning in improving their ToM comprehension.
+- **Automatic Splitting**: Our script accepts paragraphs combining scenario and question, and automatically splits them into separate scenario and question components using the LLM.
+- **Scenario Generation**: The Python script generates two example scenarios, with questions and answers, using the LLM and the automatically split scenario and question as inspiration.
+- **In-Context Learning**: The script utilizes in-context learning techniques to improve LLMs' ToM comprehension by providing prompts with two-shot chain of thought reasoning and step-by-step thinking instructions. Generated scenarios, questions, and answers are fed into the prompt automatically to assist in answering the user's question.
 
-## Requirements
+## Variants
 
-- Python 3.6+
-- OpenAI Python library (openai)
-- dotenv library (python-dotenv)
-
-## Installation
-
-1. Clone the repository:
-
-```bash
-git clone https://github.com/carterleffen/theory-of-mind.git
-```
-
-2. Install the required libraries:
-
-```bash
-pip install openai python-dotenv
-```
-
-3. Set your OpenAI API key in the `.env` file:
-
-```ini
-OPENAI_API_KEY=your_api_key_here
-```
-
-## Usage
-
-Run the script:
-
-```bash
-python theory_of_mind.py
-```
-
-Enter a scenario and a question when prompted:
-
-```
-Please enter a scenario and a question: John believes that Mary stole his sandwich, but it was actually Peter. Is John's belief true or false?
-```
-
-The script will generate two random scenarios with their corresponding questions and answers. Then, it will generate an answer for the user's question, taking inspiration from the generated scenarios.
+- **theory-of-mind.py**: Accepts your scenario & question as a paragraph and provides two scenarios followed by the answer to your question.
+- **theory-of-mind-csv.py**: Processes multiple questions using an input.csv template. Select the model type (gpt-3.5-turbo or gpt-4), temperature, and the questions (with scenario) to be answered. After processing, an output.csv is saved, which can be viewed in Google Sheets, Excel, or your favorite tool.
 
 ## How It Works
 
-The script utilizes several classes and functions to perform its tasks:
+1. Write your scenario and question combined as a paragraph.
+2. The script automatically splits the paragraph into separate scenario and question components.
+3. The LLM generates two example scenarios, with questions and answers, inspired by the split scenario and question.
+4. Utilizing in-context learning techniques, the script improves LLMs' ToM comprehension.
+5. The generated scenarios, questions, and answers are fed into the prompt automatically to assist in answering the user's question.
 
-1. **InputValidator**: Validates user input to ensure that it is a string containing a comma.
-2. **APIKeyHandler**: Handles the OpenAI API key and checks that the API key is set.
-3. **ScenarioGenerator**: Generates scenarios, questions, and answers using OpenAI's GPT-3 model.
-4. **split_input**: Splits user input into a scenario and a question.
-5. **process_answer**: Processes the generated answer by removing unnecessary text.
-6. **display_scenarios**: Displays the generated scenarios.
-7. **generate_answer**: Generates an answer based on the given prompt.
-8. **main**: Main function that handles user input, input validation, scenario generation, and output display.
+## Usage
 
-## Contributing
+1. Clone the repository.
+2. Install the required dependencies.
+3. Run `theory-of-mind.py` for single questions or `theory-of-mind-csv.py` for batch processing using input.csv.
 
-We welcome contributions to improve the scenario generator. If you have any suggestions or encounter any issues, please submit a pull request or open an issue on GitHub.
+## Background
 
-## License
+Despite LLMs' success in various tasks, they struggle with complex reasoning tasks such as Theory of Mind. This Python script enhances LLMs' ToM performance by using in-context learning approaches like step-by-step thinking, few-shot learning, and chain-of-thought reasoning. Improving ToM performance in LLMs contributes to the overall reliability of their reasoning in a wide range of everyday applications.
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+By providing appropriate prompts for in-context learning, all RLHF-trained LLMs exceeded 80% ToM accuracy, with GPT-4 reaching 100%. These results demonstrate the effectiveness of appropriate prompting in enhancing LLM ToM reasoning and highlight the context-dependent nature of LLM cognitive capacities.
