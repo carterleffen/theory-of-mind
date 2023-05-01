@@ -1,4 +1,4 @@
-# Enhancing Theory of Mind in Large Language Models: A Python Solution
+# Enhancing Theory of Mind in Large Language Models: A Python Solution - Proof of Concept / Experiment
 
 This repository presents a Python script that enhances Theory of Mind (ToM) performance in Large Language Models (LLMs) by leveraging in-context learning techniques described in the paper: [Boosting Theory-of-Mind Performance in Large Language Models via Prompting](https://arxiv.org/pdf/2304.11490.pdf) by Shima Rahimi Moghaddam and Christopher J. Honey. ToM is a crucial aspect of human-like reasoning that allows understanding of agents' beliefs, goals, and mental states. Improving LLMs' ToM performance is essential for common-sense reasoning and enabling effective interactions with humans.
 
