@@ -152,14 +152,7 @@ def process_answer(answer):
     Returns:
         str: The processed answer.
     """
-    lines = answer.strip().split('\n')
-    # Remove JSON-like objects from the answer
-    cleaned_lines = []
-    for line in lines:
-        cleaned_line = re.sub(r"\{.*\}", "", line)
-        cleaned_lines.append(cleaned_line.strip())
-
-    return ' '.join(cleaned_lines)
+    return answer.strip()
 
 def display_scenarios(scenarios):
     """
@@ -176,9 +169,10 @@ def display_scenarios(scenarios):
 
 def generate_answer(prompt):
     messages = [
-        {"role": "system", "content": "You are an expert in problem solving and critical thinking. Use your skills, thinking step by step to answer the last question, taking inspiration from the previous scenarios. You output everything in CSV format."},
+        {"role": "system", "content": "You are an expert in problem solving and critical thinking. Use your skills, thinking step by step to answer the question, taking inspiration from the previous scenarios."},
         {"role": "user", "content": prompt}
     ]
+
 
     try:
         response = chat_completion(messages)
@@ -225,7 +219,8 @@ def main():
     for i, scenario in enumerate(scenarios, start=1):
         prompt += f"Scenario {i}:\n\nScenario: \"{scenario['scenario']}\"\nQ: {scenario['question']}\nA: {scenario['answer']}\n\n"
 
-    prompt += f"Scenario: {user_scenario}\nQuestion: {user_question}\n...\nAnswer: "
+    prompt += f"Scenario: {user_scenario}\nQuestion: {user_question}\nAnswer: ...\n\n"
+
 
     answer = generate_answer(prompt)
 
