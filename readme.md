@@ -2,6 +2,8 @@
 
 This repository presents a Python script that enhances Theory of Mind (ToM) performance in Large Language Models (LLMs) by leveraging in-context learning techniques described in the paper: [Boosting Theory-of-Mind Performance in Large Language Models via Prompting](https://arxiv.org/pdf/2304.11490.pdf) by [Shima Rahimi Moghaddam](https://twitter.com/Shima_RM_) and [Christopher J. Honey](https://twitter.com/chrishoney). ToM is a crucial aspect of human-like reasoning that allows understanding of agents' beliefs, goals, and mental states. Improving LLMs' ToM performance is essential for common-sense reasoning and enabling effective interactions with humans.
 
+I've included a sample CSV output of the script running through 20 scenarios.
+
 ## Features
 
 - **Automatic Splitting**: Our script accepts paragraphs combining scenario and question, and automatically splits them into separate scenario and question components using the LLM.
