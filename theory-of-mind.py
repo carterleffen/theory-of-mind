@@ -169,10 +169,9 @@ def display_scenarios(scenarios):
 
 def generate_answer(prompt):
     messages = [
-        {"role": "system", "content": "You are an expert in problem solving and critical thinking. Use your skills, thinking step by step to answer the question, taking inspiration from the previous scenarios."},
+        {"role": "system", "content": "act like Sherlock Holmes, with expert problem solving and critical thinking skills, You always think step by step when answering the User Scenario questions and give concise responses."},
         {"role": "user", "content": prompt}
     ]
-
 
     try:
         response = chat_completion(messages)
@@ -181,7 +180,9 @@ def generate_answer(prompt):
         return None
 
     answer = response['choices'][0]['message']['content'].strip()
+
     return answer
+
 
 def main():
     print("Theory of Mind + Thinking Step By Step - Proof of Concept\n")
@@ -220,15 +221,16 @@ def main():
         prompt += f"Scenario {i}:\n\nScenario: \"{scenario['scenario']}\"\nQ: {scenario['question']}\nA: {scenario['answer']}\n\n"
 
     prompt += f"Scenario: {user_scenario}\nQuestion: {user_question}\nAnswer: ...\n\n"
-
+    prompt += f"\nUser Scenario: {user_scenario}\n\nQ: {user_question}"
 
     answer = generate_answer(prompt)
 
     if answer is not None:
         processed_answer = process_answer(answer)
-        print(f"\nUser Scenario: {user_scenario}\n\nQ: {user_question}\n\nA: {processed_answer}\n")
+        print(f"\nUser Scenario: {user_scenario}\n\nQ: {user_question}\n{processed_answer}\n")
     else:
         print("Could not generate an answer. Please try again.")
+
 
 if __name__ == "__main__":
     main()
